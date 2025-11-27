@@ -2,8 +2,30 @@ server:
   port: 8099
   servlet:
     context-path: /advertisement-notification-system
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
 kafka:
   bootstrap-servers: localhost:9092
   topic:
     groupId: notification
     notification: topic-advertisement-notifications
+  consumer:
+    group-id: advertisement-notification
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
+kafka:
+  bootstrap-servers: kafka-server:29092
+  topic:
+    groupId: notification
+    notification: topic-advertisement-notifications
+  consumer:
+    group-id: advertisement-notification
+---
